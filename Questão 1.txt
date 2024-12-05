@@ -1,0 +1,22 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Digite o valor a ser decomposto: ");
+        int valor = int.Parse(Console.ReadLine());
+        
+        int[] notas = { 100, 50, 20, 10, 2, 1 };
+
+        foreach (int nota in notas)
+        {
+            int Notas = valor / nota;
+            valor %= nota;
+            if (Notas > 0)
+            {
+                Console.WriteLine($"{Notas} nota(s) de R$ {nota},00");
+            }
+        }
+    }
+}

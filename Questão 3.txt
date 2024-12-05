@@ -1,0 +1,62 @@
+using System;
+
+namespace ClassificarAnimal
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] validDDDs = { "61", "71", "11", "21", "32", "19", "27", "31" };
+            string DDD = GetValidInput("Digite seu DDD (61/71/11/21/32/19/27/31): ", validDDDs);
+
+            if (string.IsNullOrEmpty(DDD))
+            {
+                Console.WriteLine("Entrada inválida. Não conseguimos identificar sua cidade.");
+            }
+            else
+            {
+                string cidade = Cidade(DDD);
+                Console.WriteLine($"Sua cidade é: {cidade}");
+            }
+
+            Console.WriteLine("Pressione qualquer tecla para sair.");
+            Console.ReadKey();
+        }
+
+        static string GetValidInput(string prompt, string[] validInputs)
+        {
+            string input;
+            bool isValid = false;
+
+            do
+            {
+                Console.WriteLine(prompt);
+                input = Console.ReadLine();
+
+                isValid = Array.Exists(validInputs, element => element == input);
+
+                if (!isValid)
+                {
+                    Console.WriteLine("Entrada inválida. Tente novamente.");
+                }
+            } while (!isValid);
+
+            return input;
+        }
+
+        static string Cidade(string DDD)
+        {
+            if (DDD == "61") return "Brasilia";
+            if (DDD == "71") return "Salvador";
+            if (DDD == "11") return "Sao Paulo";
+            if (DDD == "21") return "Rio de Janeiro";
+            if (DDD == "32") return "Juiz de Fora";
+            if (DDD == "19") return "Campinas";
+            if (DDD == "27") return "Vitória";
+            if (DDD == "31") return "Belo Horizonte";
+
+            // Return an empty string if no match found (fallback)
+            return "";
+        }
+    }
+}
